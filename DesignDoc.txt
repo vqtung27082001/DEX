@@ -1,0 +1,67 @@
+// =================== CS251 DEX Project =================== // 
+//                      Design Document                      //
+//                          Names                            //
+// ========================================================= //  
+
+# TODO: Remove this line and add your group names above
+
+1. Explain why adding and removing liquidity to your exchange does not change the exchange rate.
+
+# TODO: answer question 1 here
+
+Thêm thanh khoản vào sàn giao dịch không thay đổi tỷ giá giao dịch do việc nhà cung cấp
+gửi một số lượng ETH cụ thể để thêm vào thanh khoản, hợp đồng đảm bảo rằng nhà cung cấp
+có số lượng tương đương của token (theo tỷ giá giao dịch hiện tại). Hợp đồng sau đó yêu
+cầu người dùng gửi số lượng ETH tương đương theo tỷ giá giao dịch để nhận token, đảm bảo
+rằng tỷ giá giao dịch không bị điều chỉnh (điều này sẽ xảy ra nếu người dùng thêm một số
+lượng ETH và token không phù hợp với tỷ giá, từ đó thay đổi tỷ giá). Tương tự, khi rút
+thanh khoản, số lượng ETH muốn rút chỉ được rút khỏi pool nếu người dùng có số lượng
+tương đương của token, theo tỷ giá giao dịch hiện tại. Điều này ngăn chặn việc thay đổi
+tỷ giá giao dịch, vì việc rút ra một số lượng không phù hợp của ETH và token không dựa
+trên tỷ giá hiện tại sẽ thay đổi tỷ giá giao dịch.
+
+2. Explain your scheme for rewarding liquidity providers and justify the design decisions you made. How does it satisfy the liquidity rewards requirements outlined in Section 7?
+
+# TODO: answer question 2 here
+
+Để đáp ứng yêu cầu về phần thưởng thanh khoản được mô tả trong Mục 7 và thưởng cho các nhà
+cung cấp, chúng em sử dụng ánh xạ lps để lưu trữ địa chỉ của các nhà cung cấp và tỷ lệ phần
+trăm thanh khoản mà họ sở hữu. Khi một nhà cung cấp mới tham gia, tỷ lệ phần trăm thanh khoản
+của mỗi nhà cung cấp được điều chỉnh tương ứng dựa trên số lượng thanh khoản mới cung cấp. Để
+thưởng cho các nhà cung cấp, mỗi khi có một giao dịch hoán đổi được thực hiện, người dùng sẽ
+bị tính một khoản phí nhỏ (3%) được trừ đi từ số lượng token hoặc ETH mà người dùng sẽ nhận
+sau giao dịch. Các khoản phí này được thêm vào tổng thanh khoản, hiệu quả là được đầu tư lại
+cho đến khi một nhà cung cấp quyết định rút lại thanh khoản của mình. Số lượng thanh khoản của
+mỗi nhà cung cấp được tăng lên bằng số tiền phí tùy thuộc vào tỷ lệ phần trăm của họ trong pool.
+Điều này đảm bảo rằng các nhà cung cấp lớn sẽ nhận được một phần trăm lớn hơn của các khoản phí
+so với các nhà cung cấp nhỏ hơn.
+
+3. Describe at least one method you used to minimize your exchange contract's gas usage. Why was this method effective?
+
+# TODO: answer question 3 here
+
+4. Optional Feedback:
+4a. How much time did you spend on the assignment?
+
+# TODO: answer question 4(a) here
+
+Tìm hiểu trong 1 tháng.
+Code trong khoảng 1 tuần.
+
+4b. What is one thing that would have been useful to know before starting the assignment?
+
+# TODO: answer question 4(b) here
+
+Không có gì cụ thể.
+
+4c. If you could change one with about this assignment, what would you change?
+
+# TODO: answer question 4(c) here
+
+Không có gì cần thay đổi
+
+4d. Please feel free to include any other feedback you may have below.
+
+# TODO: answer question 4(d) here
+
+Không có ý kiến gì
